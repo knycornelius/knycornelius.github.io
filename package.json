@@ -6,21 +6,34 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "audit": "node scripts/audit.js"
+  },
+  "resolutions": {
+    "lodash": ">=4.18.0",
+    "postcss": ">=8.5.10",
+    "cookie": ">=0.7.0",
+    "glob": ">=10.5.0"
   },
   "dependencies": {
+    "framer-motion": "^11.3.21",
+    "next": "15.5.15",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "15.5.15",
+    "lighthouse": "^11.0.0",
+    "pa11y-ci": "^4.0.1",
+    "postcss": "^8.5.10",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

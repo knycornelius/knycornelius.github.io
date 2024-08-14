@@ -1,0 +1,69 @@
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
+const stairAnimation = {
+  initial: {
+    top: "0%",
+  },
+  animate: {
+    top: "100%",
+  },
+  exit: {
+    top: ["100%", "0%"],
+  },
+};
+
+const reverseIndex = (index: number) => {
+  const totalSteps = 6;
+  return totalSteps - index - 1;
+};
+
+function Stairs() {
+  return (
+    <>
+      {[...Array(6)].map((_, index) => {
+        return (
+          <motion.div
+            key={index}
+            variants={stairAnimation}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{
+              duration: 0.4,
+              ease: "easeInOut",
+              delay: reverseIndex(index) * 0.1,
+            }}
+            className="relative z-50 h-full w-full bg-accent"
+          />
+        );
+      })}
+    </>
+  );
+}
+
+export function StairTransition() {
+  const pathname = usePathname();
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        <div key={pathname}>
+          <div className="pointer-events-none fixed left-0 right-0 top-0 z-40 h-screen w-screen">
+            <Stairs />
+          </div>
+          <motion.div
+            className="pointer-events-none fixed top-0 h-screen w-screen bg-primary"
+            initial={{ opacity: 1 }}
+            animate={{
+              opacity: 0,
+              transition: { delay: 1, duration: 0.4, ease: "easeInOut" },
+            }}
+          />
+        </div>
+      </AnimatePresence>
+    </>
+  );
+}
